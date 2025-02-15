@@ -1,6 +1,6 @@
-// Attention: Select the correct port and "Arduino Nano" as the board before uploading
+// Attention: Select the correct port and "Arduino Uno" as the board before uploading.
 
-// Arduino Nano Full Self-Diagnostic Test
+// Arduino Uno Full Self-Diagnostic Test
 #include <EEPROM.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -21,7 +21,7 @@ bool spiOK = false;
 void setup() {
     Serial.begin(9600);
     delay(2000);
-    Serial.println("\n=== Arduino Nano Full Self-Diagnostic Test ===");
+    Serial.println("\n=== Arduino Uno Full Self-Diagnostic Test ===");
 
     // 1. Serial Communication Test
     Serial.println("Checking Serial Communication...");
@@ -53,7 +53,7 @@ void setup() {
 
     // 4. Analog Input Test
     Serial.println("Checking Analog Inputs...");
-    for (int pin = A0; pin <= A7; pin++) {
+    for (int pin = A0; pin <= A5; pin++) {
         pinMode(pin, INPUT);
         int value = analogRead(pin);
         if (value < ANALOG_THRESHOLD) analogOK = false;
@@ -66,7 +66,7 @@ void setup() {
 
     // 5. PWM Test
     Serial.println("Checking PWM Outputs...");
-    int pwmPins[] = {3, 5, 6, 9, 10, 11}; 
+    int pwmPins[] = {3, 5, 6, 9, 10, 11};
     for (int i = 0; i < 6; i++) {
         int pin = pwmPins[i];
         pinMode(pin, OUTPUT);
@@ -97,15 +97,15 @@ void setup() {
     pinMode(SS, OUTPUT);
     digitalWrite(SS, LOW);
     SPI.begin();
-    SPI.transfer(0x00);
+    SPI.transfer(0x00); // Dummy transfer
     digitalWrite(SS, HIGH);
-    spiOK = true;
+    spiOK = true; // If no crash, assume SPI works
     Serial.println("✔ SPI Communication: PASS");
 
     // 9. Voltage Test
     /*Serial.println("Checking Voltage Levels...");
     pinMode(A0, INPUT);
-    float voltage = analogRead(A0) * (5.0 / 1023.0); 
+    float voltage = analogRead(A0) * (5.0 / 1023.0); // Expect around 5V
     voltageOK = (voltage >= 4.7 && voltage <= 5.3);
     Serial.print("Measured Voltage: ");
     Serial.println(voltage);
@@ -124,7 +124,7 @@ void setup() {
     //Serial.println(voltageOK ? "✔ 5V Power Supply: OK" : "✖ 5V Power Supply: ERROR");
 
     if (serialOK && ledOK && digitalIOOK && analogOK && pwmOK && eepromOK && spiOK) {
-        Serial.println("\n✅ Arduino Nano is fully functional!");
+        Serial.println("\n✅ Arduino Uno is fully functional!");
     } else {
         Serial.println("\n⚠️ Issues detected. Check failed tests.");
     }
