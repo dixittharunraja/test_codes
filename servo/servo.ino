@@ -20,7 +20,7 @@ Servo myServo;  // Create servo object
 
 void setup() {
   Serial.begin(9600);  // Start serial communication
-  myServo.attach(3);   // Attach servo to pin D9
+  myServo.attach(3);   // Attach servo to pin D3
   Serial.println("Enter an angle (0 to 180) to move the servo:");
 }
 
