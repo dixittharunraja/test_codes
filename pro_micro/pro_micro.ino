@@ -1,6 +1,39 @@
-// Attention: Select the correct port and "Arduino Leonardo" as the board before uploading
+/*
+  =================================================
+  Arduino Pro Micro Full Self-Diagnostic Test
+  =================================================
 
-// Arduino Pro Micro Full Self-Diagnostic Test
+  Description:
+  This program performs a **comprehensive self-diagnostic test** 
+  on an **Arduino Pro Micro**, checking key hardware functionalities:
+
+  ✅ Serial Communication (USB CDC)
+  ✅ Built-in TX LED (Pin 17)
+  ✅ Digital I/O Pins (D2 - D21)
+  ✅ Analog Inputs (A0 - A5)
+  ✅ PWM Outputs (D3, D5, D6, D9, D10)
+  ✅ EEPROM Read/Write
+  ✅ SPI Communication
+  ✅ USB HID Functionality (Keyboard/Mouse Support)
+
+  Optional (Disabled by Default - Uncomment to Enable):
+  ⚠️ I2C Communication (requires external I2C device)
+  ⚠️ Voltage Level Check (requires connection to A0)
+
+  Each test outputs **PASS** or **FAIL** to the Serial Monitor.
+  At the end, a **final report** summarizes the results.
+
+  Wiring Requirements:
+  - **I2C Test (optional):** Requires an I2C device.
+  - **Voltage Test (optional):** Requires voltage measurement on A0.
+
+  Usage:
+  - **Before Uploading:** Select the correct **port** and set the board type to **Arduino Leonardo**.
+  - Upload the sketch using the **Arduino IDE**.
+  - Open the **Serial Monitor (Ctrl + Shift + M)** at **115200 baud**.
+  - View test results and diagnose any hardware issues.
+*/
+
 #include <EEPROM.h>
 #include <Wire.h>
 #include <SPI.h>

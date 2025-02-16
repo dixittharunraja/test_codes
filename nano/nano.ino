@@ -1,6 +1,43 @@
-// Attention: Select the correct port and "Arduino Nano" as the board before uploading
+/*
+  =================================================
+  Arduino Nano Full Self-Diagnostic Test
+  =================================================
 
-// Arduino Nano Full Self-Diagnostic Test
+  Description:
+  This program performs a **comprehensive self-diagnostic test** 
+  on an **Arduino Nano** to verify the functionality of key components, including:
+
+  ✅ Serial Communication
+  ✅ Built-in LED (Pin 13)
+  ✅ Digital I/O Pins (D2 - D13)
+  ✅ Analog Inputs (A0 - A7)
+  ✅ PWM Outputs (D3, D5, D6, D9, D10, D11)
+  ✅ EEPROM Read/Write
+  ✅ SPI Communication
+
+  Optional (Disabled by Default - Uncomment to Enable):
+  ⚠️ I2C Communication (requires external I2C device)
+  ⚠️ Voltage Level Check (requires connection to A0)
+
+  Each test prints a **PASS** or **FAIL** message to the Serial Monitor.
+  At the end, a **final report** summarizes the results.
+
+  Wiring Requirements:
+  - **Digital I/O Test:** Pins D2-D13 should not be externally connected.
+  - **Analog Test:** Analog pins should have some varying voltage input.
+  - **PWM Test:** Requires measurement to validate output.
+  - **EEPROM Test:** No additional wiring needed.
+  - **SPI Test:** No additional wiring needed.
+  - **I2C Test (optional):** Requires an I2C device.
+  - **Voltage Test (optional):** Requires voltage measurement on A0.
+
+  Usage:
+  - **Before Uploading:** Select the correct **port** and set the board type to **Arduino Nano**.
+  - Upload the sketch using the **Arduino IDE**.
+  - Open the **Serial Monitor (Ctrl + Shift + M)** at **9600 baud**.
+  - View test results and diagnose any hardware issues.
+*/
+
 #include <EEPROM.h>
 #include <Wire.h>
 #include <SPI.h>

@@ -1,6 +1,42 @@
-// Attention: Select the correct port and "Arduino Uno" as the board before uploading.
+/*
+  ==========================================
+  Arduino Uno Full Self-Diagnostic Test
+  ==========================================
 
-// Arduino Uno Full Self-Diagnostic Test
+  Description:
+  This program performs a **comprehensive self-diagnostic test** on an 
+  Arduino Uno board, verifying the functionality of key components such as:
+  
+  ✅ Serial Communication
+  ✅ Built-in LED (Pin 13)
+  ✅ Digital I/O Pins (D2 - D13)
+  ✅ Analog Inputs (A0 - A5)
+  ✅ PWM Outputs (D3, D5, D6, D9, D10, D11)
+  ✅ EEPROM Read/Write
+  ✅ SPI Communication
+  
+  Optional (Disabled by Default - Uncomment to Enable):
+  ⚠️ I2C Communication (requires external I2C device)
+  ⚠️ Voltage Level Check (requires connection to A0)
+  
+  Each test outputs a **PASS** or **FAIL** result to the Serial Monitor.
+  At the end, a **final report** summarizes the results.
+
+  Wiring Requirements:
+  - **Digital I/O Test:** Pins D2-D13 should not be externally connected.
+  - **Analog Test:** Analog pins should have some varying voltage input.
+  - **PWM Test:** Requires measurement to validate output.
+  - **EEPROM Test:** No additional wiring needed.
+  - **SPI Test:** No additional wiring needed.
+  - **I2C Test (optional):** Requires an I2C device.
+  - **Voltage Test (optional):** Requires voltage measurement on A0.
+
+  Usage:
+  - Upload this code to an **Arduino Uno** using the Arduino IDE.
+  - Open the **Serial Monitor (Ctrl + Shift + M)** at **9600 baud**.
+  - View test results and diagnose any hardware issues.
+*/
+
 #include <EEPROM.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -14,9 +50,9 @@ bool digitalIOOK = true;
 bool analogOK = true;
 bool pwmOK = true;
 bool eepromOK = false;
-//bool i2cOK = false;  //if you want to check this, connect i2c
+//bool i2cOK = false;  // Uncomment if testing I2C
 bool spiOK = false;
-//bool voltageOK = false;   //if you want to check this, connect voltage
+//bool voltageOK = false;  // Uncomment if testing voltage
 
 void setup() {
     Serial.begin(9600);
